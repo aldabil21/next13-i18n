@@ -1,5 +1,6 @@
 import "@styles/globals.css";
 import LocaleProvider from "../../context/locale/Provider";
+import { i18n } from "../../i18n.config";
 
 export default function RootLayout({
   children,
@@ -26,5 +27,5 @@ export default function RootLayout({
 }
 
 export async function generateStaticParams() {
-  return [{ locale: "ar" }, { locale: "en" }];
+  return i18n.locales.map((locale) => ({ locale }));
 }
