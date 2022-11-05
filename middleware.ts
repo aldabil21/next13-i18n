@@ -1,27 +1,31 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { i18n } from "./i18n.config";
+import i18n from "@i18next";
 
-// This function can be marked `async` if using `await` inside
 export function middleware(request: NextRequest) {
-  const { defaultLocale, locales } = i18n;
+  const locales = i18n.options.supportedLngs as string[];
+  const defaultLang = (i18n.options.fallbackLng as string[])[0];
   const { headers, nextUrl } = request;
 
+  // Exclude statics - add your static folders
   const shouldCheckLocale = !nextUrl.pathname.startsWith("/_next") && !nextUrl.pathname.startsWith("/favicon");
+  // && !nextUrl.pathname.startsWith("/images/");
 
-  const firstSegment = nextUrl.pathname.split("/")[1] as typeof locales[number];
-  const noValidLocale = !locales.includes(firstSegment);
+  const reqLocale = nextUrl.pathname.split("/")[1];
+  const noValidLocale = !locales.includes(reqLocale);
 
   if (shouldCheckLocale && noValidLocale) {
-    // Omit country for now
+    // TODO: check from cookie before detecting
+
     const accepts = headers.get("accept-language") || "";
-    const detected = accepts.split(",")[0].split("-")[0] as typeof locales[number];
+    // Omit country for now
+    const detected = accepts.split(",")[0].split("-")[0];
 
-    const validLocale = locales.includes(detected) ? detected : defaultLocale;
+    const validLocale = locales.includes(detected) ? detected : defaultLang;
 
-    nextUrl.pathname = `/${validLocale}${nextUrl.pathname}`;
+    nextUrl.pathname = `${nextUrl.pathname}`;
 
-    return NextResponse.rewrite(nextUrl);
+    return NextResponse.rewrite(new URL(`/${validLocale}${nextUrl.pathname}`, request.url));
   }
 
   return NextResponse.next();

@@ -15,7 +15,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.10.2, @babel/runtime@npm:^7.18.9":
+"@babel/runtime@npm:^7.10.2, @babel/runtime@npm:^7.17.2, @babel/runtime@npm:^7.18.9":
   version: 7.20.1
   resolution: "@babel/runtime@npm:7.20.1"
   dependencies:
@@ -1727,6 +1727,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"i18next-fs-backend@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "i18next-fs-backend@npm:2.0.0"
+  checksum: a452aaf6a3d5fb1e9b3d8f58e44a6be2cc9de89239c52deb628b49732a3ce0982e76aface55b2b5005a86914ab88ac02dd13408f8eb85505f5d41cbeb8969122
+  languageName: node
+  linkType: hard
+
+"i18next@npm:^22.0.4":
+  version: 22.0.4
+  resolution: "i18next@npm:22.0.4"
+  dependencies:
+    "@babel/runtime": ^7.17.2
+  checksum: aa49e6e48583833ee673c0dd9568081a5e15fde9549aa3e47a99ad91d3fdb7469f8a315864fc45ec466b1e60caa00d5fc8371e47840068048b4ab79a69dc2b19
+  languageName: node
+  linkType: hard
+
 "iconv-lite@npm:^0.6.2":
   version: 0.6.3
   resolution: "iconv-lite@npm:0.6.3"
@@ -2310,6 +2326,8 @@ __metadata:
     autoprefixer: ^10.4.13
     eslint: 8.26.0
     eslint-config-next: 13.0.1
+    i18next: ^22.0.4
+    i18next-fs-backend: ^2.0.0
     next: 13.0.1
     postcss: ^8.4.18
     react: 18.2.0

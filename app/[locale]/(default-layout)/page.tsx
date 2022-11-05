@@ -1,12 +1,9 @@
-"use client";
-import useLocale from "@hooks/useLocale";
+import i18n from "@i18next";
 
-export default function Home() {
-  const { t } = useLocale();
+export default async function Home() {
   return (
     <div className="p-10 text-center">
-      <h1 className="text-3xl pb-6">Root Page</h1>
-      <h2>{t("hi")}</h2>
+      <h1 className="text-3xl pb-6">{i18n.t("common:hi")}</h1>
     </div>
   );
 }
